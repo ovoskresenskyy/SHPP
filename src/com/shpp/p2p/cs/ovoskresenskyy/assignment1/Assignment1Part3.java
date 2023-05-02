@@ -11,22 +11,25 @@ public class Assignment1Part3 extends KarelTheRobot {
     /**
      * Precondition: Karel stands at the South-West corner and looks at the East.
      * This is the row we have to find the center.
-     * Result: Center of the row is marked by one beeper. There are no more beepers at the field.
+     * There are no beepers and walls on the field.
+     * Result: Center of the South's row is marked by one beeper.
+     * There are no more beepers on the field.
      */
     public void run() throws Exception {
         findAndMarkTheRowCenter();
     }
 
     /**
-     * This method first will mark edges with beepers and then will move them until it finds the center.
+     * First, Karel will mark edges of the row with 2 beepers,
+     * then will move them towards each other until he finds the center.
      */
     private void findAndMarkTheRowCenter() throws Exception {
         setEdgesOfTheRow();
-        moveEdgeBeepersToTheCenter();
+        moveEdgesTowardsEachOther();
     }
 
     /**
-     * Precondition: Karel stands at the start of the row.
+     * Precondition: Karel stands at the start of the row, looking towards the end of the row.
      * Result: Start and end of the row marked with beepers.
      */
     private void setEdgesOfTheRow() throws Exception {
@@ -36,60 +39,37 @@ public class Assignment1Part3 extends KarelTheRobot {
     }
 
     /**
-     * This method will move beepers to the center of the row
+     * This method, using recursion, will move beepers towards each other until found the center of the row.
      * Precondition: Edges of the row is already marked with beepers, Karel stands with his back to the row,
      * Karel stands on the cell with beeper on the "floor".
      * Result: Center of the row is found and marked.
      */
-    private void moveEdgeBeepersToTheCenter() throws Exception {
-        turnBack();
-        /*
-         * If we find the center of the row, the recursion stops.
-         */
-        if (moveBeeperAndCheckIsCenterFound()) return;
-
-        /*
-         * After we move one beeper to the center we have to find another one and move it.
-         */
-        moveToAnotherBeeper();
-
-        /*
-        Repeat until the center is found.
-         */
-        moveEdgeBeepersToTheCenter();
-    }
-
-    /**
-     * This method will move beeper one cell forward
-     * Return: true if center is found
-     * Precondition: Karel stands at the cell with the beeper.
-     * Result: Beeper is moved one cell forward or center is found.
-     */
-    private boolean moveBeeperAndCheckIsCenterFound() throws Exception {
+    private void moveEdgesTowardsEachOther() throws Exception {
+        turnAround();
         pickBeeper();
         /*
-         * Only for the case when the field is one cell wide we have to check it.
+         * We have to check if the front is clear for case of the world with one cell wide.
          */
-        if (frontIsBlocked()) return true;
-        move();
-
+        if (frontIsClear()) move();
         /*
-         * If there is beeper, that's mean that beepers ar met in the center of the row.
+         * If beeper is present, that means that center is found.
          */
-        if (beepersPresent()) return true;
-
-        putBeeper();
-
-        /*
-         * Center isn't found, so keep moving beepers.
-         */
-        return false;
+        if (noBeepersPresent()) {
+            putBeeper();
+            moveToAnotherEdge();
+            /*
+             * Keep repeating this action until center is found.
+             */
+            moveEdgesTowardsEachOther();
+        }
     }
 
     /**
-     *
+     * This method will move Karel forward till he reaches another "edge-beeper".
+     * Precondition: Karel stands at the cell with placed beeper and looks towards the second beeper.
+     * Result: Karel reaches the second beeper without changing direction.
      */
-    private void moveToAnotherBeeper() throws Exception {
+    private void moveToAnotherEdge() throws Exception {
         do move();
         while (noBeepersPresent());
     }
