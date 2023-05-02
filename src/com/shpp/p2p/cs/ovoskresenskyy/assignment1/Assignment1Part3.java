@@ -75,7 +75,7 @@ public class Assignment1Part3 extends KarelTheRobot {
     }
 
     /**
-     * This method will turn Karel around.
+     * This method turns Karel around.
      * Precondition: Is missing.
      * Result: Karel will be rotated 180 degrees.
      */

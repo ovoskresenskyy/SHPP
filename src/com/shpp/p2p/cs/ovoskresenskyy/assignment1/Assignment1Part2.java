@@ -3,68 +3,96 @@ package com.shpp.p2p.cs.ovoskresenskyy.assignment1;
 import com.shpp.karel.KarelTheRobot;
 
 /**
- * This program will help Karel complete construction of the columns by putting "stones" where needed.
+ * This program helps Karel complete construction of the columns by putting "stones" in a row.
+ * The last column is placed on the border of the field.
+ * Columns are starts from the "floor".
  */
 public class Assignment1Part2 extends KarelTheRobot {
 
     /**
+     * This method starts building of columns.
      * Preconditions: Karel stands in the South-West corner of the field, he looks to the East.
-     * Result: Built straight equidistant columns.
+     * Result: Built straight equidistant columns with beepers.
      */
     public void run() throws Exception {
-        buildColumns();
+        buildColumn();
     }
 
     /**
+     * This method, using recursion, builds columns and ends when it's no more to build.
+     * Karel, after building the column, if it's possible, preparing to build another one.
      * Preconditions: Karel stands at the beginning cell of the future column,
-     * there is a wall that limits the height of the columns,
-     * Action: After building the column Karel, if it's possible, preparing to build another one.
-     * Using recursion this process ends when all columns are built.
-     * the last column is placed on the border of the field.
+     * there is a wall that limits the height of the column,
+     * there are already some placed beepers.
      * Result: All columns are built.
      */
-    private void buildColumns() throws Exception {
+    private void buildColumn() throws Exception {
         /*
          * First, we have to turn Karel so that he faces North and ready to build column at right direction.
          */
         lookAtTheNorth();
-        buildColumn();
+        fillMissedStones();
         /*
-         * Only if it's not the end of the field we can build new column.
+         * Only if it's not the end of the field we can build new a column.
          */
         if (rightIsClear()) {
             prepareToBuildNextColumn();
-            buildColumns();
+            buildColumn();
         }
     }
 
     /**
-     * This method move Karel to the cell where he will build a new column.
-     * Precondition: Karel just finish building of the column and stands at the "top" of the column.
+     * This method fill in the missing stoned in the column.
+     * Precondition: There is a wall that limits the height of the column.
+     * Result: Column is built by putting "stones".
+     */
+    private void fillMissedStones() throws Exception {
+        putStone();
+        if (frontIsClear()) {
+            move();
+            fillMissedStones();
+        }
+    }
+
+    /**
+     * This method will put beeper only if there is no beeper yet.
+     * Precondition: Is missing.
+     * Result: The beeper is placed at the cell Karel stands.
+     */
+    private void putStone() throws Exception {
+        if (noBeepersPresent()) putBeeper();
+    }
+
+    /**
+     * This method move Karel to the starting position for the building a new column.
+     * Precondition: Karel just finish building of the previous column,
+     * he stands at the "top" of the column, faces to the top of the column.
      * Result: Karel is ready to build new column, he stands at the "bottom" of future column.
      */
     private void prepareToBuildNextColumn() throws Exception {
         /*
          * First, Karel returns to the floor, to make sure he can reach next column.
          */
-        returnToTheBeginningOfTheColumn();
+        goDownTheColumn();
         moveToTheNextColumn();
     }
 
     /**
-     * This method return Karel on the "floor" of the field.
-     * Precondition: Karel stands at the "top" of the column and looks at the North.
+     * This method return Karel to the beginning of just built column.
+     * Precondition: Karel stands at the "top" of the column,
+     * faces to the top of the column.
      * Result: Karel stands at the "bottom" of just built column.
+     * faces to the bottom of the column.
      */
-    private void returnToTheBeginningOfTheColumn() throws Exception {
+    private void goDownTheColumn() throws Exception {
         turnAround();
-        moveToTheBeginOfTheColumn();
+        while (frontIsClear()) move();
     }
 
     /**
-     * This method will move Karel until he reaches next column.
-     * Precondition: Karel stands at the "bottom" of the column, distance between columns 4 sells.
-     * Result: Karel is ready to build new column.
+     * This method moves forward Karel until he reaches next column.
+     * Precondition: Karel stands at the "bottom" of the column, distance between columns 4 cells.
+     * Result: Karel reaches the cell where he will build the next column.
      */
     private void moveToTheNextColumn() throws Exception {
         turnLeft();
@@ -72,47 +100,16 @@ public class Assignment1Part2 extends KarelTheRobot {
     }
 
     /**
-     * This method will move Karel forward until he reaches the border of the field.
-     * Precondition: Is missing. We know that Karel's world has walls.
-     * Result: He will stop at the cell in front of the wall.
-     */
-    private void moveToTheBeginOfTheColumn() throws Exception {
-        while (frontIsClear()) move();
-    }
-
-    /**
-     * This method builds a column using recursion.
-     * Precondition: There is a wall that limits the height of the column.
-     * Result: Column is built by putting "stones".
-     */
-    private void buildColumn() throws Exception {
-        putStone();
-        if (frontIsClear()) {
-            move();
-            buildColumn();
-        }
-    }
-
-    /**
-     * This method will put beeper if only there is no beeper yet.
-     * Precondition: Is missing.
-     * Result: There is a beeper at the cell Karel stands.
-     */
-    private void putStone() throws Exception {
-        if (noBeepersPresent()) putBeeper();
-    }
-
-    /**
      * This method turn Karel to make sure he can start build the column in right direction.
      * Precondition: Is missing.
-     * Result: Karel looks at the North.
+     * Result: Karel faces North.
      */
     private void lookAtTheNorth() throws Exception {
         while (!facingNorth()) turnLeft();
     }
 
     /**
-     * This method will turn Karel around.
+     * This method turns Karel around.
      * Precondition: Is missing.
      * Result: Karel will be rotated 180 degrees.
      */

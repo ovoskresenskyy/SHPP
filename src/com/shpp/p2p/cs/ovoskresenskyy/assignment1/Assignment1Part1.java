@@ -89,17 +89,18 @@ public class Assignment1Part1 extends KarelTheRobot {
     }
 
     /**
-     * This method will turn Karel right.
+     * This method turns Karel right.
      * Precondition: Is missing.
      * Result: Karel will be rotated 90 degrees clockwise.
      */
     private void turnRight() throws Exception {
-        turnAround();
+        turnLeft();
+        turnLeft();
         turnLeft();
     }
 
     /**
-     * This method will turn Karel around.
+     * This method turns Karel around.
      * Precondition: Is missing.
      * Result: Karel will be rotated 180 degrees.
      */
