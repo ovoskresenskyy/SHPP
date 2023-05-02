@@ -45,13 +45,13 @@ public class Assignment1Part1 extends KarelTheRobot {
      * Result: Karel stands in the starting position turned to the starting side.
      */
     private void returnToStartingPosition() throws Exception {
-        turnBack();
+        turnAround();
         moveToTheWall();
         stepRight();
         /*
          * Starting position means correct direction, so we will turn around to get it.
          */
-        turnBack();
+        turnAround();
     }
 
     /**
@@ -94,16 +94,16 @@ public class Assignment1Part1 extends KarelTheRobot {
      * Result: Karel will be rotated 90 degrees clockwise.
      */
     private void turnRight() throws Exception {
-        turnBack();
+        turnAround();
         turnLeft();
     }
 
     /**
-     * This method will turn Karel back.
+     * This method will turn Karel around.
      * Precondition: Is missing.
      * Result: Karel will be rotated 180 degrees.
      */
-    private void turnBack() throws Exception {
+    private void turnAround() throws Exception {
         turnLeft();
         turnLeft();
     }

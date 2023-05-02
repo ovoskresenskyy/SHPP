@@ -57,7 +57,7 @@ public class Assignment1Part2 extends KarelTheRobot {
      * Result: Karel stands at the "bottom" of just built column.
      */
     private void returnToTheBeginningOfTheColumn() throws Exception {
-        turnBack();
+        turnAround();
         moveToTheBeginOfTheColumn();
     }
 
@@ -112,11 +112,11 @@ public class Assignment1Part2 extends KarelTheRobot {
     }
 
     /**
-     * This method will turn Karel back.
+     * This method will turn Karel around.
      * Precondition: Is missing.
      * Result: Karel will be rotated 180 degrees.
      */
-    private void turnBack() throws Exception {
+    private void turnAround() throws Exception {
         turnLeft();
         turnLeft();
     }
