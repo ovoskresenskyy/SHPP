@@ -15,6 +15,7 @@ public class Assignment1Part3 extends KarelTheRobot {
      * Result: Center of the South's row is marked by one beeper.
      * There are no more beepers on the field.
      */
+    @Override
     public void run() throws Exception {
         findAndMarkTheRowCenter();
     }

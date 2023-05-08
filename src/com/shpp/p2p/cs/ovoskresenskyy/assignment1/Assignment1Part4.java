@@ -15,6 +15,7 @@ public class Assignment1Part4 extends KarelTheRobot {
      * Given world is rectangular.
      * Result: Checker board is drawn on the given field.
      */
+    @Override
     public void run() throws Exception {
         markCurrentCellAndJumpToTheNext();
     }

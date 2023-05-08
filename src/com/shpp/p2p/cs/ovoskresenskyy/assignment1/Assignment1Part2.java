@@ -14,6 +14,7 @@ public class Assignment1Part2 extends KarelTheRobot {
      * Preconditions: Karel stands in the South-West corner of the field, he looks to the East.
      * Result: Built straight equidistant columns with beepers.
      */
+    @Override
     public void run() throws Exception {
         buildColumn();
     }

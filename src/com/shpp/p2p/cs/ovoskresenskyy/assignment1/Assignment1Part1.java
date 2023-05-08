@@ -12,6 +12,7 @@ public class Assignment1Part1 extends KarelTheRobot {
      * Preconditions: Karel lives in the square house and stands in the North-West corner of the house.
      * Result: Karel picks up the newspaper and returns to the starting position.
      */
+    @Override
     public void run() throws Exception {
         moveToNewspaper();
         pickUpNewspaper();
