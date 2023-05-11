@@ -57,6 +57,7 @@ public class Assignment1Part3 extends KarelTheRobot {
          */
         if (noBeepersPresent()) {
             putBeeper();
+            move();
             moveToAnotherEdge();
             /*
              * Keep repeating this action until center is found.
@@ -71,8 +72,7 @@ public class Assignment1Part3 extends KarelTheRobot {
      * Result: Karel reaches the second beeper without changing direction.
      */
     private void moveToAnotherEdge() throws Exception {
-        do move();
-        while (noBeepersPresent());
+        while (noBeepersPresent()) move();
     }
 
     /**
