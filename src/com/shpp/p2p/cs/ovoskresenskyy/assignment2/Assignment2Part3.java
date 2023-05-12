@@ -5,9 +5,12 @@ import com.shpp.cs.a.graphics.WindowProgram;
 
 import java.awt.*;
 
-/* TODO: Replace these file comments with a description of what your program
- * does. Хто не читає що тут написано?)
- */public class Assignment2Part3 extends WindowProgram {
+/**
+ * Paw prints.
+ * <p>
+ * The program draws paw prints.
+ */
+public class Assignment2Part3 extends WindowProgram {
 
     /* Constants controlling the relative positions of the
      * three toes to the upper-left corner of the pawprint.
@@ -57,14 +60,23 @@ import java.awt.*;
      * @param y The y coordinate of the upper-left corner of the bounding box for the pawprint.
      */
     private void drawPawprint(double x, double y) {
+        /* Toes drawing */
         drawOval(x + FIRST_TOE_OFFSET_X, y + FIRST_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
         drawOval(x + SECOND_TOE_OFFSET_X, y + SECOND_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
         drawOval(x + THIRD_TOE_OFFSET_X, y + THIRD_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
 
+        /* Heel drawing */
         drawOval(x + HEEL_OFFSET_X, y + HEEL_OFFSET_Y, HEEL_WIDTH, HEEL_HEIGHT);
     }
 
-    private void drawOval(double x, double y, double width, double height) {
+    /**
+     * The method draws black oval according to the received parameters
+     *
+     * @param x - horizontal coordinate
+     * @param y - vertical coordinate
+     * @param width - oval's width
+     * @param height - oval's height
+     */    private void drawOval(double x, double y, double width, double height) {
         GOval oval = new GOval(x, y, width, height);
         oval.setFilled(true);
         oval.setFillColor(Color.BLACK);
