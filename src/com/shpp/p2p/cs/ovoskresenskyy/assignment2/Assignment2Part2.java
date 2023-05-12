@@ -29,8 +29,10 @@ public class Assignment2Part2 extends WindowProgram {
     public void run() {
         /* Diameter will be at least three time smaller than the shortest side of the window.
          * This is necessary so that all the circles fit in the window, regardless of it's size.
+         *
+         * Cast width to double to make it more clear.
          */
-        circleDiameter = Math.min(getWidth(), getHeight()) / 3;
+        circleDiameter = Math.min((double) getWidth(), getHeight()) / 3;
 
         drawCircles();
         drawRectangle();
