@@ -72,11 +72,12 @@ public class Assignment2Part3 extends WindowProgram {
     /**
      * The method draws black oval according to the received parameters
      *
-     * @param x - horizontal coordinate
-     * @param y - vertical coordinate
-     * @param width - oval's width
+     * @param x      - horizontal coordinate
+     * @param y      - vertical coordinate
+     * @param width  - oval's width
      * @param height - oval's height
-     */    private void drawOval(double x, double y, double width, double height) {
+     */
+    private void drawOval(double x, double y, double width, double height) {
         GOval oval = new GOval(x, y, width, height);
         oval.setFilled(true);
         oval.setFillColor(Color.BLACK);

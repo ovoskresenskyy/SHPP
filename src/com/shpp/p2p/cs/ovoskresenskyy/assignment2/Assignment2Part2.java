@@ -52,8 +52,8 @@ public class Assignment2Part2 extends WindowProgram {
     /**
      * The method draws filled circle according to the received parameters
      *
-     * @param x - horizontal coordinate
-     * @param y - vertical coordinate
+     * @param x - The x coordinate of the upper-left corner of the bounding box of circle.
+     * @param y - The y coordinate of the upper-left corner of the bounding box of circle.
      */
     private void drawCircle(double x, double y) {
         GOval circle = new GOval(x, y, circleDiameter, circleDiameter);
@@ -66,7 +66,7 @@ public class Assignment2Part2 extends WindowProgram {
      * The method draws white rectangle in the center of the window, that overlays circles.
      */
     private void drawRectangle() {
-        /* The coordinate of the upper left corner of the rectangle. */
+        /* The x coordinate of the upper left corner of the rectangle. */
         double x = circleDiameter / 2;
 
         /* Corners of the rectangle will always be placed in the center of the circles. */
