@@ -1,7 +1,6 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
 import acm.graphics.GOval;
-import com.shpp.cs.a.graphics.WindowProgram;
 
 import java.awt.*;
 
@@ -10,7 +9,7 @@ import java.awt.*;
  * <p>
  * The program draws the most enchanting caterpillar in the world.
  */
-public class Assignment2Part6 extends WindowProgram {
+public class Assignment2Part6 extends SuperWindowProgram {
 
     /* The default width and height of the window.
      * These constants will tell Java to create a window whose size is *approximately* given by these dimensions.
@@ -33,27 +32,15 @@ public class Assignment2Part6 extends WindowProgram {
         double x = 0;
 
         for (int i = 0; i < SECTION_NUMBER; i++) {
-            /* Only odd sections will be shifted vertically. */
+            /* Each odd section will be shifted vertically. */
             double y = (i % 2 == 0) ? Y_OFFSET : 0;
 
-            drawCircle(x, y);
+            GOval circle = drawOval(x, y, DIAMETER, DIAMETER);
+            fillObject(circle, Color.GREEN);
+            circle.setColor(Color.RED);
 
             /* Each section will be shifted horizontally. */
             x += X_OFFSET;
         }
-    }
-
-    /**
-     * The method draws filled circle according to the received parameters
-     *
-     * @param x - The x coordinate of the upper-left corner of the bounding box of circle.
-     * @param y - The y coordinate of the upper-left corner of the bounding box of circle.
-     */
-    private void drawCircle(double x, double y) {
-        GOval oval = new GOval(x, y, DIAMETER, DIAMETER);
-        oval.setFilled(true);
-        oval.setFillColor(Color.GREEN);
-        oval.setColor(Color.RED);
-        add(oval);
     }
 }

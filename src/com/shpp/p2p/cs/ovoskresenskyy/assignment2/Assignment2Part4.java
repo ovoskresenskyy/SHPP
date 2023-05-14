@@ -2,7 +2,6 @@ package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
 import acm.graphics.GLabel;
 import acm.graphics.GRect;
-import com.shpp.cs.a.graphics.WindowProgram;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
  * The program writes a program that draws flag of Estonia
  * and in the lower right corner of the window print the inscription "Flag of Estonia".
  */
-public class Assignment2Part4 extends WindowProgram {
+public class Assignment2Part4 extends SuperWindowProgram {
 
     /* Constants to control the width and height of the flag. */
     private static final int FLAG_WIDTH = 400;
@@ -21,12 +20,10 @@ public class Assignment2Part4 extends WindowProgram {
 
     @Override
     public void run() {
-        /*
-         * We want to be sure that the window size is larger than the flag.
-         */
+        /* Want to be sure that the window size is larger than the flag. */
         setWindowsSize();
 
-        drawFlagAndLabel();
+        drawFlagOfEstonia();
     }
 
     /**
@@ -47,7 +44,7 @@ public class Assignment2Part4 extends WindowProgram {
     /**
      * The method draws flag of Estonia and print label.
      */
-    private void drawFlagAndLabel() {
+    private void drawFlagOfEstonia() {
         /* Stripe colors */
         ArrayList<Color> colors = new ArrayList<>();
         colors.add(Color.BLUE);
@@ -74,16 +71,15 @@ public class Assignment2Part4 extends WindowProgram {
      * @param isHorizontal - true if stripes are Horizontal, false if Vertical.
      */
     private void drawFlag(int x, int y, ArrayList<Color> colors, boolean isHorizontal) {
-        /*
-         * No stripes - no flag.
-         */
+        /* No stripes - no flag. */
         if (colors.isEmpty()) return;
 
         double stripeWidth = getStripeWidth(isHorizontal, colors.size());
         double stripeHeight = getStripeHeight(isHorizontal, colors.size());
 
         for (Color color : colors) {
-            drawStripe(x, y, stripeWidth, stripeHeight, color);
+            GRect stripe = drawRectangle(x, y, stripeWidth, stripeHeight);
+            fillObject(stripe, color);
 
             /* Shift stripes location depending on the type of flag. */
             y += isHorizontal ? stripeHeight : 0;
@@ -115,23 +111,6 @@ public class Assignment2Part4 extends WindowProgram {
         return isHorizontal
                 ? (double) FLAG_HEIGHT / numberOfStrips
                 : FLAG_HEIGHT;
-    }
-
-    /**
-     * The method draws rectangle according to the received parameters
-     *
-     * @param x      - The x coordinate of the upper-left corner of the stripe.
-     * @param y      - The y coordinate of the upper-left corner of the stripe.
-     * @param width  - Stripe width
-     * @param height - Stripe height
-     * @param color  - Stripe color
-     */
-    private void drawStripe(int x, int y, double width, double height, Color color) {
-        GRect rectangle = new GRect(x, y, width, height);
-        rectangle.setFilled(true);
-        rectangle.setFillColor(color);
-        rectangle.setColor(Color.BLACK);
-        add(rectangle);
     }
 
     /**

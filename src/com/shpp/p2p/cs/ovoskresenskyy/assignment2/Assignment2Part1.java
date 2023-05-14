@@ -59,7 +59,7 @@ public class Assignment2Part1 extends TextProgram {
     }
 
     /**
-     * Simple formula for getting the first root.
+     * The method calculates the first root.
      * Precondition: a != 0
      */
     private double getFirstRoot() {
@@ -67,7 +67,7 @@ public class Assignment2Part1 extends TextProgram {
     }
 
     /**
-     * Simple formula for getting the second root.
+     * The method calculates the second root.
      * Precondition: a != 0
      */
     private double getSecondRoot() {

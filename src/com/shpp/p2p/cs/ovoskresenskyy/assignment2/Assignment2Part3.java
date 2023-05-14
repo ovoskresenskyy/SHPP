@@ -1,7 +1,6 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
 import acm.graphics.GOval;
-import com.shpp.cs.a.graphics.WindowProgram;
 
 import java.awt.*;
 
@@ -10,7 +9,7 @@ import java.awt.*;
  * <p>
  * The program draws paw prints.
  */
-public class Assignment2Part3 extends WindowProgram {
+public class Assignment2Part3 extends SuperWindowProgram {
 
     /* Constants controlling the relative positions of the
      * three toes to the upper-left corner of the pawprint.
@@ -61,26 +60,17 @@ public class Assignment2Part3 extends WindowProgram {
      */
     private void drawPawprint(double x, double y) {
         /* Toes drawing */
-        drawOval(x + FIRST_TOE_OFFSET_X, y + FIRST_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
-        drawOval(x + SECOND_TOE_OFFSET_X, y + SECOND_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
-        drawOval(x + THIRD_TOE_OFFSET_X, y + THIRD_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
+        GOval firstToe = drawOval(x + FIRST_TOE_OFFSET_X, y + FIRST_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
+        fillObject(firstToe, Color.BLACK);
+
+        GOval secondToe = drawOval(x + SECOND_TOE_OFFSET_X, y + SECOND_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
+        fillObject(secondToe, Color.BLACK);
+
+        GOval thirdToe = drawOval(x + THIRD_TOE_OFFSET_X, y + THIRD_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
+        fillObject(thirdToe, Color.BLACK);
 
         /* Heel drawing */
-        drawOval(x + HEEL_OFFSET_X, y + HEEL_OFFSET_Y, HEEL_WIDTH, HEEL_HEIGHT);
-    }
-
-    /**
-     * The method draws black oval according to the received parameters
-     *
-     * @param x      - horizontal coordinate
-     * @param y      - vertical coordinate
-     * @param width  - oval's width
-     * @param height - oval's height
-     */
-    private void drawOval(double x, double y, double width, double height) {
-        GOval oval = new GOval(x, y, width, height);
-        oval.setFilled(true);
-        oval.setFillColor(Color.BLACK);
-        add(oval);
+        GOval heel = drawOval(x + HEEL_OFFSET_X, y + HEEL_OFFSET_Y, HEEL_WIDTH, HEEL_HEIGHT);
+        fillObject(heel, Color.BLACK);
     }
 }

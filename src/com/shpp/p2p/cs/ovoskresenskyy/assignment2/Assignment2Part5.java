@@ -1,7 +1,6 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
 import acm.graphics.GRect;
-import com.shpp.cs.a.graphics.WindowProgram;
 
 import java.awt.*;
 
@@ -11,7 +10,7 @@ import java.awt.*;
  * The program draw a matrix of black boxes separated by "streets".
  * Drawn boxes are centered in the window.
  */
-public class Assignment2Part5 extends WindowProgram {
+public class Assignment2Part5 extends SuperWindowProgram {
 
     /* The number of rows and columns in the grid, respectively. */
     private static final int NUM_ROWS = 5;
@@ -35,21 +34,9 @@ public class Assignment2Part5 extends WindowProgram {
 
         for (int i = 0; i < NUM_COLS; i++) {
             for (int j = 0; j < NUM_ROWS; j++) {
-                drawBox(x + offset * i, y + offset * j);
+                GRect box = drawRectangle(x + offset * i, y + offset * j, BOX_SIZE, BOX_SIZE);
+                fillObject(box, Color.BLACK);
             }
         }
-    }
-
-    /**
-     * The method draws rectangle according to the received parameters
-     *
-     * @param x - The x coordinate of the upper-left corner of the box.
-     * @param y - The y coordinate of the upper-left corner of the box.
-     */
-    private void drawBox(double x, double y) {
-        GRect rectangle = new GRect(x, y, BOX_SIZE, BOX_SIZE);
-        rectangle.setFilled(true);
-        rectangle.setFillColor(Color.BLACK);
-        add(rectangle);
     }
 }
