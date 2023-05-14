@@ -1,5 +1,6 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
+import acm.graphics.GFillable;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
 import com.shpp.cs.a.graphics.WindowProgram;
@@ -17,11 +18,11 @@ public class Assignment2Part2 extends WindowProgram {
     /* The default width and height of the window.
      * These constants will tell Java to create a window whose size is *approximately* given by these dimensions.
      */
-    public static final int APPLICATION_WIDTH = 800;
+    public static final int APPLICATION_WIDTH = 400;
     public static final int APPLICATION_HEIGHT = 400;
 
     /* Diameter of circles.
-     * This parameter also will be used for getting x-coordinate and y-coordinate of rectangle.
+     * This parameter also will be used for getting x and y coordinates of the rectangle.
      */
     private double circleDiameter;
 
@@ -33,13 +34,18 @@ public class Assignment2Part2 extends WindowProgram {
          * Cast width to double to make it more clear.
          */
         circleDiameter = Math.min((double) getWidth(), getHeight()) / 3;
-
         drawCircles();
-        drawRectangle();
+
+        /* The x coordinate of the upper left corner of the rectangle. */
+        double x = circleDiameter / 2;
+        /* Corners of the rectangle will always be placed in the center of the circles. */
+        double width = getWidth() - circleDiameter;
+        double height = getHeight() - circleDiameter;
+        drawRectangle(x, x, width, height);
     }
 
     /**
-     * A simple 4 step nested loop to draw circles at the corners of a window.
+     * A simple nested loop to draw circles at the corners of a window.
      */
     private void drawCircles() {
         for (int i = 0; i < 2; i++) {
@@ -59,26 +65,33 @@ public class Assignment2Part2 extends WindowProgram {
      */
     private void drawCircle(double x, double y) {
         GOval circle = new GOval(x, y, circleDiameter, circleDiameter);
-        circle.setFilled(true);
-        circle.setFillColor(Color.BLACK);
+        fillObject(circle, Color.BLACK);
         add(circle);
     }
 
     /**
-     * The method draws white rectangle in the center of the window, that overlays circles.
+     * The method draws white rectangle according to the received parameters.
+     * Yes, I know that in our case x always equals y, but I want to make this method universal.
+     *
+     * @param x      - The x coordinate of the upper-left corner of the rectangle.
+     * @param y      - The y coordinate of the upper-left corner of the rectangle.
+     * @param width  - Rectangle width.
+     * @param height - Rectangle height.
      */
-    private void drawRectangle() {
-        /* The x coordinate of the upper left corner of the rectangle. */
-        double x = circleDiameter / 2;
-
-        /* Corners of the rectangle will always be placed in the center of the circles. */
-        double width = getWidth() - circleDiameter;
-        double height = getHeight() - circleDiameter;
-
-        GRect rectangle = new GRect(x, x, width, height);
-        rectangle.setFilled(true);
-        rectangle.setFillColor(Color.WHITE);
+    private void drawRectangle(double x, double y, double width, double height) {
+        GRect rectangle = new GRect(x, y, width, height);
+        fillObject(rectangle, Color.WHITE);
         rectangle.setColor(Color.WHITE);
         add(rectangle);
+    }
+
+    /**
+     * The method fill received object with received color.
+     *
+     * @param object - Any objects that implements GFillable.
+     */
+    private void fillObject(GFillable object, Color color) {
+        object.setFilled(true);
+        object.setFillColor(color);
     }
 }
