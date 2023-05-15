@@ -4,7 +4,6 @@ import acm.graphics.GLabel;
 import acm.graphics.GRect;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Tricolor-flags.
@@ -46,15 +45,12 @@ public class Assignment2Part4 extends SuperWindowProgram {
      */
     private void drawFlagOfEstonia() {
         /* Stripe colors */
-        ArrayList<Color> colors = new ArrayList<>();
-        colors.add(Color.BLUE);
-        colors.add(Color.BLACK);
-        colors.add(Color.WHITE);
+        Color[] colors = {Color.BLUE, Color.BLACK, Color.WHITE};
 
         /* x coordinate to be sure that flag is placed in the center of the window. */
-        int x = (getWidth() - FLAG_WIDTH) / 2;
+        double x = ((double) getWidth() - FLAG_WIDTH) / 2;
         /* y coordinate to be sure that flag is placed in the center of the window. */
-        int y = (getHeight() - FLAG_HEIGHT) / 2;
+        double y = ((double) getHeight() - FLAG_HEIGHT) / 2;
 
         drawFlag(x, y, colors, true);
         drawLabel("Flag of Estonia");
@@ -70,12 +66,12 @@ public class Assignment2Part4 extends SuperWindowProgram {
      * @param colors       - List of colored stripes to be drawn one by one.
      * @param isHorizontal - true if stripes are Horizontal, false if Vertical.
      */
-    private void drawFlag(int x, int y, ArrayList<Color> colors, boolean isHorizontal) {
+    private void drawFlag(double x, double y, Color[] colors, boolean isHorizontal) {
         /* No stripes - no flag. */
-        if (colors.isEmpty()) return;
+        if (colors.length == 0) return;
 
-        double stripeWidth = getStripeWidth(isHorizontal, colors.size());
-        double stripeHeight = getStripeHeight(isHorizontal, colors.size());
+        double stripeWidth = getStripeWidth(isHorizontal, colors.length);
+        double stripeHeight = getStripeHeight(isHorizontal, colors.length);
 
         for (Color color : colors) {
             GRect stripe = drawFilledRectangle(x, y, stripeWidth, stripeHeight, color);
