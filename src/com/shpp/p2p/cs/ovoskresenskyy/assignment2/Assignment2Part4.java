@@ -78,8 +78,8 @@ public class Assignment2Part4 extends SuperWindowProgram {
         double stripeHeight = getStripeHeight(isHorizontal, colors.size());
 
         for (Color color : colors) {
-            GRect stripe = drawRectangle(x, y, stripeWidth, stripeHeight);
-            fillObject(stripe, color);
+            GRect stripe = drawFilledRectangle(x, y, stripeWidth, stripeHeight, color);
+            stripe.setColor(Color.BLACK);
 
             /* Shift stripes location depending on the type of flag. */
             y += isHorizontal ? stripeHeight : 0;

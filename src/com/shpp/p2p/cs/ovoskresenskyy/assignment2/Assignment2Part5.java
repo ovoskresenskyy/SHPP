@@ -1,7 +1,5 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
-import acm.graphics.GRect;
-
 import java.awt.*;
 
 /**
@@ -34,8 +32,7 @@ public class Assignment2Part5 extends SuperWindowProgram {
 
         for (int i = 0; i < NUM_COLS; i++) {
             for (int j = 0; j < NUM_ROWS; j++) {
-                GRect box = drawRectangle(x + offset * i, y + offset * j, BOX_SIZE, BOX_SIZE);
-                fillObject(box, Color.BLACK);
+                drawFilledRectangle(x + offset * i, y + offset * j, BOX_SIZE, BOX_SIZE, Color.BLACK);
             }
         }
     }

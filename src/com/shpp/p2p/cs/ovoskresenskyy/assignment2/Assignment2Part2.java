@@ -1,6 +1,5 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
-import acm.graphics.GOval;
 import acm.graphics.GRect;
 
 import java.awt.*;
@@ -43,11 +42,12 @@ public class Assignment2Part2 extends SuperWindowProgram {
     private void drawCirclesOnTheCorners() {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
-                double x = (getWidth() - circleDiameter) * j;
-                double y = (getHeight() - circleDiameter) * i;
-
-                GOval gOval = drawOval(x, y, circleDiameter, circleDiameter);
-                fillObject(gOval, Color.BLACK);
+                drawFilledOval(
+                        (getWidth() - circleDiameter) * j,
+                        (getHeight() - circleDiameter) * i,
+                        circleDiameter,
+                        circleDiameter,
+                        Color.BLACK);
             }
         }
     }
@@ -63,8 +63,7 @@ public class Assignment2Part2 extends SuperWindowProgram {
         double width = getWidth() - circleDiameter;
         double height = getHeight() - circleDiameter;
 
-        GRect rectangle = drawRectangle(x, x, width, height);
-        fillObject(rectangle, Color.WHITE);
+        GRect rectangle = drawFilledRectangle(x, x, width, height, Color.WHITE);
         rectangle.setColor(Color.WHITE);
     }
 }

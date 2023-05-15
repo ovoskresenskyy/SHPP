@@ -1,6 +1,5 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
-import acm.graphics.GFillable;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
 import com.shpp.cs.a.graphics.WindowProgram;
@@ -16,9 +15,12 @@ public class SuperWindowProgram extends WindowProgram {
      * @param y      - The y coordinate of the upper-left corner of the rectangle.
      * @param width  - Rectangle width.
      * @param height - Rectangle height.
+     * @param color  - Rectangle color.
      */
-    GRect drawRectangle(double x, double y, double width, double height) {
+    GRect drawFilledRectangle(double x, double y, double width, double height, Color color) {
         GRect rectangle = new GRect(x, y, width, height);
+        rectangle.setFilled(true);
+        rectangle.setFillColor(color);
         add(rectangle);
         return rectangle;
     }
@@ -30,21 +32,13 @@ public class SuperWindowProgram extends WindowProgram {
      * @param y      - The y coordinate of the upper-left corner of the bounding box of the oval.
      * @param width  - Oval width.
      * @param height - Oval height.
+     * @param color  - Oval color.
      */
-    GOval drawOval(double x, double y, double width, double height) {
+    GOval drawFilledOval(double x, double y, double width, double height, Color color) {
         GOval oval = new GOval(x, y, width, height);
+        oval.setFilled(true);
+        oval.setFillColor(color);
         add(oval);
         return oval;
     }
-
-    /**
-     * The method fill received object with received color.
-     *
-     * @param object - Any objects that implements GFillable.
-     */
-    void fillObject(GFillable object, Color color) {
-        object.setFilled(true);
-        object.setFillColor(color);
-    }
-
 }

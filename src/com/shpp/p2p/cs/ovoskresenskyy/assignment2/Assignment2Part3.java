@@ -1,7 +1,5 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment2;
 
-import acm.graphics.GOval;
-
 import java.awt.*;
 
 /**
@@ -59,18 +57,14 @@ public class Assignment2Part3 extends SuperWindowProgram {
      * @param y The y coordinate of the upper-left corner of the bounding box for the pawprint.
      */
     private void drawPawprint(double x, double y) {
-        /* Toes drawing */
-        GOval firstToe = drawOval(x + FIRST_TOE_OFFSET_X, y + FIRST_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
-        fillObject(firstToe, Color.BLACK);
-
-        GOval secondToe = drawOval(x + SECOND_TOE_OFFSET_X, y + SECOND_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
-        fillObject(secondToe, Color.BLACK);
-
-        GOval thirdToe = drawOval(x + THIRD_TOE_OFFSET_X, y + THIRD_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT);
-        fillObject(thirdToe, Color.BLACK);
+        /* The first toe drawing */
+        drawFilledOval(x + FIRST_TOE_OFFSET_X, y + FIRST_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT, Color.BLACK);
+        /* The second toe drawing */
+        drawFilledOval(x + SECOND_TOE_OFFSET_X, y + SECOND_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT, Color.BLACK);
+        /* The third toe drawing */
+        drawFilledOval(x + THIRD_TOE_OFFSET_X, y + THIRD_TOE_OFFSET_Y, TOE_WIDTH, TOE_HEIGHT, Color.BLACK);
 
         /* Heel drawing */
-        GOval heel = drawOval(x + HEEL_OFFSET_X, y + HEEL_OFFSET_Y, HEEL_WIDTH, HEEL_HEIGHT);
-        fillObject(heel, Color.BLACK);
+        drawFilledOval(x + HEEL_OFFSET_X, y + HEEL_OFFSET_Y, HEEL_WIDTH, HEEL_HEIGHT, Color.BLACK);
     }
 }

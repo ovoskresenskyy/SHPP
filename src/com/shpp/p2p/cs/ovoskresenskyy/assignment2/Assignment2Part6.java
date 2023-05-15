@@ -35,8 +35,7 @@ public class Assignment2Part6 extends SuperWindowProgram {
             /* Each odd section will be shifted vertically. */
             double y = (i % 2 == 0) ? Y_OFFSET : 0;
 
-            GOval circle = drawOval(x, y, DIAMETER, DIAMETER);
-            fillObject(circle, Color.GREEN);
+            GOval circle = drawFilledOval(x, y, DIAMETER, DIAMETER, Color.GREEN);
             circle.setColor(Color.RED);
 
             /* Each section will be shifted horizontally. */
