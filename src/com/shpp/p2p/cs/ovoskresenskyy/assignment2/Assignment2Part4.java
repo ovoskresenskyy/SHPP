@@ -48,9 +48,9 @@ public class Assignment2Part4 extends SuperWindowProgram {
         Color[] colors = {Color.BLUE, Color.BLACK, Color.WHITE};
 
         /* x coordinate to be sure that flag is placed in the center of the window. */
-        double x = ((double) getWidth() - FLAG_WIDTH) / 2;
+        double x = (getWidth() - FLAG_WIDTH) / 2.0;
         /* y coordinate to be sure that flag is placed in the center of the window. */
-        double y = ((double) getHeight() - FLAG_HEIGHT) / 2;
+        double y = (getHeight() - FLAG_HEIGHT) / 2.0;
 
         drawFlag(x, y, colors, true);
         drawLabel("Flag of Estonia");
@@ -90,10 +90,10 @@ public class Assignment2Part4 extends SuperWindowProgram {
      * @param isHorizontal   - true if stripes are Horizontal, false if Vertical.
      * @param numberOfStrips - number of stripes on the flag.
      */
-    private double getStripeWidth(boolean isHorizontal, int numberOfStrips) {
+    private double getStripeWidth(boolean isHorizontal, double numberOfStrips) {
         return isHorizontal
                 ? FLAG_WIDTH
-                : (double) FLAG_WIDTH / numberOfStrips;
+                : FLAG_WIDTH / numberOfStrips;
     }
 
     /**
@@ -103,9 +103,9 @@ public class Assignment2Part4 extends SuperWindowProgram {
      * @param isHorizontal   - true if stripes are Horizontal, false if Vertical.
      * @param numberOfStrips - number of stripes on the flag.
      */
-    private double getStripeHeight(boolean isHorizontal, int numberOfStrips) {
+    private double getStripeHeight(boolean isHorizontal, double numberOfStrips) {
         return isHorizontal
-                ? (double) FLAG_HEIGHT / numberOfStrips
+                ? FLAG_HEIGHT / numberOfStrips
                 : FLAG_HEIGHT;
     }
 

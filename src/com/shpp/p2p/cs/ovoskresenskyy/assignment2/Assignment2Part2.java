@@ -7,7 +7,7 @@ import java.awt.*;
 /**
  * Illusory contours.
  * <p>
- * The program creates a white rectangle that overlays four circles in the created window.
+ * The program creates a white rectangle that overlays four circles in the opened window.
  * Window size changes do not affect figure sizes.
  */
 public class Assignment2Part2 extends SuperWindowProgram {
@@ -27,10 +27,8 @@ public class Assignment2Part2 extends SuperWindowProgram {
     public void run() {
         /* Diameter will be at least three time smaller than the shortest side of the window.
          * This is necessary so that all the circles fit in the window, regardless of it's size.
-         *
-         * Cast width to double to make it more clear.
          */
-        circleDiameter = Math.min((double) getWidth(), getHeight()) / 3;
+        circleDiameter = Math.min(getWidth(), getHeight()) / 3.0;
         drawCirclesOnTheCorners();
 
         coverCirclesWithRectangle();
@@ -57,7 +55,9 @@ public class Assignment2Part2 extends SuperWindowProgram {
      * and makes our illusion real by covering the circles.
      */
     private void coverCirclesWithRectangle() {
-        /* The x coordinate of the upper left corner of the rectangle. */
+        /* The x coordinate of the upper left corner of the rectangle.
+         * The y coordinate will always be at the same point.
+         */
         double x = circleDiameter / 2;
         /* Corners of the rectangle will always be placed in the center of the circles. */
         double width = getWidth() - circleDiameter;
