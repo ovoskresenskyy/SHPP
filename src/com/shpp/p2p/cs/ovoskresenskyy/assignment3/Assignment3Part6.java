@@ -70,8 +70,8 @@ public class Assignment3Part6 extends SuperWindowProgram {
     private static final double DRAWING_TABLE_SPEED = 8;
     private static final double DRAWING_HOLES_SPEED = 1;
     private static final double CUE_PULLING_SPEED = 0.3;
-    private static final double CUE_HITTING_SPEED = 1.75;
-    private static final double CUE_BALL_SPEED = 0.5;
+    private static final double CUE_HITTING_SPEED = 1.6;
+    private static final double CUE_BALL_SPEED = 0.45;
     private static final double BALLS_SPEED = 1.25;
 
 
