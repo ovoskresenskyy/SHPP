@@ -100,6 +100,7 @@ public class Assignment3Part6 extends SuperWindowProgram {
     /* A variable that will record the start of the application.
      * Will be used to calculate the duration. */
     private long startTime;
+    private long timeSpent;
 
     /* The objects of our label which shows duration and count of frames done. */
     private GLabel tracker;
@@ -322,10 +323,13 @@ public class Assignment3Part6 extends SuperWindowProgram {
 
             dy -= CUE_HITTING_SPEED;
 
-            /* When cue reaches the cue ball, the cue ball begins its movement. */
-            if (cue.getY() <= cueBallLocation) moveCueBall();
-
             updateTracker();
+
+            /* When cue reaches the cue ball, the cue ball begins its movement. */
+            if (cue.getY() <= cueBallLocation) {
+                moveCueBall();
+                break;
+            }
         }
     }
 
@@ -345,10 +349,13 @@ public class Assignment3Part6 extends SuperWindowProgram {
 
             dy -= CUE_BALL_SPEED;
 
-            /* When cue balls reaches other two balls, they begin their movements. */
-            if (cueBall.getY() <= ballsLocation) moveBalls();
-
             updateTracker();
+
+            /* When cue balls reaches other two balls, they begin their movements. */
+            if (cueBall.getY() <= ballsLocation) {
+                moveBalls();
+                break;
+            }
         }
     }
 
