@@ -100,7 +100,6 @@ public class Assignment3Part6 extends SuperWindowProgram {
     /* A variable that will record the start of the application.
      * Will be used to calculate the duration. */
     private long startTime;
-    private long timeSpent;
 
     /* The objects of our label which shows duration and count of frames done. */
     private GLabel tracker;
