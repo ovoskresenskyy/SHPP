@@ -40,9 +40,8 @@ public class Assignment3Part3 extends TextProgram {
                 result *= base;
             }
 
-            /* To get the correct result we have to apply the division of 1 to the result,
-             * because the exponent of the number is negative.
-             */
+            /* Since the exponent of a number is negative, we have to apply a division of 1 to the result
+             * in order to get the correct result. */
             result = 1 / (result);
         } else {
             for (int i = 1; i < exponent; i++) {

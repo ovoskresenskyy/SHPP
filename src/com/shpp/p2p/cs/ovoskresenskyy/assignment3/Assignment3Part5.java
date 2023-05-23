@@ -22,7 +22,7 @@ public class Assignment3Part5 extends TextProgram {
     /* The amount of money the player has already won. */
     private int earnedTotal;
     /* Game counter. */
-    private int gamesPlayed;
+    private int gamesCounter;
 
     @Override
     public void run() {
@@ -31,7 +31,7 @@ public class Assignment3Part5 extends TextProgram {
         moneyOnTheTable = 1;
         playTheGame();
 
-        println("It took " + gamesPlayed + " games to earn $20.");
+        println("It took " + gamesCounter + " games to earn $20.");
     }
 
     /**
@@ -56,10 +56,9 @@ public class Assignment3Part5 extends TextProgram {
             /* All the money on the table goes to the lucky person. */
             earnedTotal += moneyOnTheTable;
 
-            println("This game, you earned $" + moneyOnTheTable
-                    + "\nYour total is $" + earnedTotal);
+            println("This game, you earned $" + moneyOnTheTable + "\nYour total is $" + earnedTotal);
 
-            gamesPlayed++;
+            gamesCounter++;
         }
 
         playTheGame();
