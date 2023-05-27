@@ -15,6 +15,10 @@ public class Assignment3Part4 extends SuperWindowProgram {
     public static final double BRICK_HEIGHT = 20;
     public static final double BRICK_WIDTH = 50;
 
+    /* Colors of bricks */
+    public static final Color BRICK_COLOR = Color.BLACK;
+    public static final Color BRICK_BORDER_COLOR = Color.WHITE;
+
     /* Amount of bricks which will be placed at the pyramids base.
      * At each next level of the pyramid there will be one brick less.  */
     public static final int BRICKS_IN_BASE = 10;
@@ -45,8 +49,8 @@ public class Assignment3Part4 extends SuperWindowProgram {
         double bricksX = x;
 
         for (int i = 0; i < bricksAmount; i++) {
-            GRect gRect = drawFilledRectangle(bricksX, y, BRICK_WIDTH, BRICK_HEIGHT, Color.BLACK);
-            gRect.setColor(Color.WHITE);
+            GRect gRect = drawFilledRectangle(bricksX, y, BRICK_WIDTH, BRICK_HEIGHT, BRICK_COLOR);
+            gRect.setColor(BRICK_BORDER_COLOR);
 
             /* Horizontal bricks shifting in the current row. */
             bricksX += BRICK_WIDTH;
