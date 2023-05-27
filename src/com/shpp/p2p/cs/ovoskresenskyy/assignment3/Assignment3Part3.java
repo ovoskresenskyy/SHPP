@@ -33,7 +33,7 @@ public class Assignment3Part3 extends TextProgram {
         if (exponent == 0) {
             return 1;
         } else if (exponent < 0) {
-            return 1 / raiseToPower(base, -exponent);
+            return 1 / calculateExponentiation(base, -exponent);
         } else {
             return calculateExponentiation(base, exponent);
         }
