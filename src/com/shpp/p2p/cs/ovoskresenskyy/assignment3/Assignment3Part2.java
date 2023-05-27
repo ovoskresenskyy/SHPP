@@ -11,8 +11,11 @@ public class Assignment3Part2 extends TextProgram {
 
     @Override
     public void run() {
-        /* Get a number from the user and process it. */
-        processNumber(readInt("Enter a number: "));
+        /* Get an any positive number from the user. */
+        int number = getNumberFromUser();
+
+        int processedNumber = processNumber(number);
+        println("The processed number is equals " + processedNumber);
     }
 
     /**
@@ -21,24 +24,60 @@ public class Assignment3Part2 extends TextProgram {
      * - or multiplies by 3 and adds 1 if it's odd.
      * The process continues until it becomes 1.
      * <p>
-     * Precondition: The number must be more than 0.
+     * Precondition: Is missed.
      * Result: The number becomes 1.
      *
      * @param number - The number to process.
+     * @return - 1
      */
-    private void processNumber(int number) {
-        if (number < 1) {
-            println("The number must be more than 0");
-            return;
-        }
-
+    private int processNumber(int number) {
         while (number != 1) {
             if (number % 2 == 0) {
-                println(number + " - is even. So I take a half: " + (number = number / 2));
+                number = processEvenNumber(number);
             } else {
-                println(number + " - is odd. So I make 3n + 1: " + (number = number * 3 + 1));
+                number = processOddNumber(number);
             }
         }
-        println("The number is finally becomes 1");
+        return number;
+    }
+
+    /**
+     * The method receives the number and divide it by 2
+     *
+     * @param number - The even number to process.
+     * @return - Processed number
+     */
+    private int processEvenNumber(int number) {
+        int processedNumber = number / 2;
+        println(number + " - is even. So I take a half: " + processedNumber);
+        return processedNumber;
+    }
+
+    /**
+     * The method receives the number multiplies it by 3 and adds 1
+     *
+     * @param number - The odd number to process.
+     * @return - Processed number
+     */
+    private int processOddNumber(int number) {
+        int processedNumber = number * 3 + 1;
+        println(number + " - is odd. So I make 3n + 1: " + processedNumber);
+        return processedNumber;
+    }
+
+    /**
+     * The method asks the user to input any positive number.
+     * Prevents the user from entering an negative number.
+     *
+     * @return - Positive number
+     */
+    private int getNumberFromUser() {
+        int number = readInt("Enter a positive number: ");
+
+        if (number < 0) {
+            return getNumberFromUser();
+        } else {
+            return number;
+        }
     }
 }
