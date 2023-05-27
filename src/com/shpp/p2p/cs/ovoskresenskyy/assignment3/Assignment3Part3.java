@@ -30,26 +30,27 @@ public class Assignment3Part3 extends TextProgram {
      * @return - Received number raised to power
      */
     private double raiseToPower(double base, int exponent) {
-        if (exponent == 0) return 1;
-
-        /* Use a different variable for not to change the base. */
-        double result = base;
-
-        if (exponent < 0) {
-            for (int i = -1; i > exponent; i--) {
-                result *= base;
-            }
-
-            /* Since the exponent of a number is negative, we have to apply a division of 1 to the result
-             * in order to get the correct result. */
-            result = 1 / (result);
+        if (exponent == 0) {
+            return 1;
+        } else if (exponent < 0) {
+            return 1 / raiseToPower(base, -exponent);
         } else {
-            for (int i = 1; i < exponent; i++) {
-                result *= base;
-            }
+            return calculateExponentiation(base, exponent);
         }
-
-        return result;
     }
 
+    /**
+     * The method calculates the raising to the power
+     *
+     * @param base     - Number to raise
+     * @param exponent - Power of number
+     * @return - Received number raised to power
+     */
+    private double calculateExponentiation(double base, int exponent) {
+        double result = base;
+        for (int i = 1; i < exponent; i++) {
+            result *= base;
+        }
+        return result;
+    }
 }
