@@ -11,11 +11,14 @@ import com.shpp.cs.a.console.TextProgram;
  * - Two people play: the lucky one and the sweaty one.
  * - The lucky person leaves the casino when he earns $20 or more.
  * - The sweaty one puts $1 on the table, and the lucky one starts flipping a coin.
- * - If it is an eagle, then the sweaty person adds exactly the same amount to the amount on the table.
+ * - If it is an eagle, then the sweaty person adds the same amount to the amount on the table.
  * - If the tail is all that is on the table, it goes to the lucky person.
  * - If the lucky person has less than $20 as a result, the game is repeated.
  */
 public class Assignment3Part5 extends TextProgram {
+
+    /* The amount of money currently in play. */
+    private final static int AMOUNT_TO_WIN = 20;
 
     /* The amount of money currently in play. */
     private int moneyOnTheTable;
@@ -29,9 +32,10 @@ public class Assignment3Part5 extends TextProgram {
 
         /* Game starts with $1 on the table. */
         moneyOnTheTable = 1;
+
         playTheGame();
 
-        println("It took " + gamesCounter + " games to earn $20.");
+        println("It took " + gamesCounter + " games to earn $" + AMOUNT_TO_WIN + ".");
     }
 
     /**
@@ -43,7 +47,9 @@ public class Assignment3Part5 extends TextProgram {
      */
     private void playTheGame() {
         /* Signal to stop the game. */
-        if (earnedTotal >= 20) return;
+        if (earnedTotal >= AMOUNT_TO_WIN) {
+            return;
+        }
 
         /* Coin toss simulator.
          * Conditions:
@@ -56,8 +62,12 @@ public class Assignment3Part5 extends TextProgram {
             /* All the money on the table goes to the lucky person. */
             earnedTotal += moneyOnTheTable;
 
-            println("This game, you earned $" + moneyOnTheTable + "\nYour total is $" + earnedTotal);
+            println("This game, you earned $"
+                    + moneyOnTheTable
+                    + "\nYour total is $"
+                    + earnedTotal);
 
+            moneyOnTheTable = 1;
             gamesCounter++;
         }
 
