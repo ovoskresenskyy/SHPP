@@ -24,6 +24,13 @@ public class Assignment3Part1 extends TextProgram {
     /* Minimum days a week exercising for good blood pressure. */
     public final static int DAYS_ENOUGH_BP = 3;
 
+    /* Length of training period in days */
+    public final static int TRAINING_PERIOD_LENGTH_IN_DAYS = 7;
+
+    /* Minimum and maximum number of minutes per day. */
+    public final static int MIN_MINUTES_IN_DAY = 0;
+    public final static int MAX_MINUTES_IN_DAY = 1440;
+
     /* The number of days in which the user trained enough for good cardiovascular health. */
     private int daysTrainedCVH;
     /* The number of days in which the user trained enough for good blood pressure. */
@@ -38,15 +45,46 @@ public class Assignment3Part1 extends TextProgram {
     }
 
     /**
-     * The method asks the user about his exercising for last 7 days
-     * And count days in which lesson duration was enough for good cardiovascular health and good blood pressure.
+     * The method asks the user about his workouts for the last days set by the constant
+     * <p>
+     * And count days in which lesson duration was enough
+     * for good cardiovascular health and good blood pressure.
      */
     private void countTrainingDays() {
-        for (int dayNumber = 1; dayNumber <= 7; dayNumber++) {
-            int minutesTrained = readInt("How many minutes did you work out on day " + dayNumber + "? ");
-            if (minutesTrained >= MINUTES_FOR_CVH) daysTrainedCVH++;
-            if (minutesTrained >= MINUTES_FOR_BP) daysTrainedBP++;
+        for (int dayNumber = 1; dayNumber <= TRAINING_PERIOD_LENGTH_IN_DAYS; dayNumber++) {
+            int minutesTrained = getMinutesTrained(dayNumber);
+
+            if (minutesTrained >= MINUTES_FOR_CVH) {
+                daysTrainedCVH++;
+            }
+            if (minutesTrained >= MINUTES_FOR_BP) {
+                daysTrainedBP++;
+            }
         }
+    }
+
+    /**
+     * The method asks the user about the duration of the workout for the specified day.
+     * Prevents the user from entering an invalid number of minutes.
+     *
+     * @param dayNumber - Ordinal number of the day in the period
+     * @return - Workout duration in minutes
+     */
+    private int getMinutesTrained(int dayNumber) {
+        int minutes = readInt("How many minutes did you work out on day " + dayNumber + "? ");
+
+        /* We need to check if the user entered the correct value. */
+        while (minutes < MIN_MINUTES_IN_DAY || minutes > MAX_MINUTES_IN_DAY) {
+            minutes = readInt("Please enter a valid value between "
+                    + MIN_MINUTES_IN_DAY
+                    + " and "
+                    + MAX_MINUTES_IN_DAY
+                    + " (max minutes in a day) for day "
+                    + dayNumber
+                    + ": ");
+        }
+
+        return minutes;
     }
 
     /**
