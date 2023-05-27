@@ -51,6 +51,9 @@ public class Assignment3Part6 extends SuperWindowProgram {
     private static final double CUE_WIDTH = 5;
     private static final double CUE_LENGTH = 230;
 
+    /* the distance that the cue will be pulled before hitting */
+    private static final double CUE_PULL_DISTANCE = 35;
+
     /* The default colors of the billiard cue. */
     private static final Color CUE_BROWN = new Color(144, 130, 72);
 
@@ -64,10 +67,12 @@ public class Assignment3Part6 extends SuperWindowProgram {
 
     /* The amount of time to pause between frames (48fps). */
     private static final double PAUSE_TIME = 1000.0 / 48;
+    /* The amount of time to pause for imitation of holding the cue. */
+    private static final double CUE_HOLDING_PAUSE = PAUSE_TIME * 10;
 
 
     /* Constants for controlling the speed of objects */
-    private static final double DRAWING_TABLE_SPEED = 8;
+    private static final double DRAWING_TABLE_SPEED = 7.7;
     private static final double DRAWING_HOLES_SPEED = 1;
     private static final double CUE_PULLING_SPEED = 0.3;
     private static final double CUE_HITTING_SPEED = 1.6;
@@ -286,8 +291,6 @@ public class Assignment3Part6 extends SuperWindowProgram {
 
     /**
      * The method imitates pulling the cue before hitting
-     * <p>
-     * Cue will be pulled back by 1 / 6 of its length.
      */
     private void pullBackCue() {
         /* Tracks the downward speed of the cue. */
@@ -295,7 +298,7 @@ public class Assignment3Part6 extends SuperWindowProgram {
         /* The y coordinate of starting position of the cue. */
         double startY = cue.getY();
 
-        while (cue.getY() < startY + cue.getHeight() / 6) {
+        while (cue.getY() < startY + CUE_PULL_DISTANCE) {
             cue.move(0, dy);
 
             dy += CUE_PULLING_SPEED;
@@ -304,7 +307,7 @@ public class Assignment3Part6 extends SuperWindowProgram {
         }
 
         /* Hold the cue to simulate aiming. */
-        pause(PAUSE_TIME * 10);
+        pause(CUE_HOLDING_PAUSE);
     }
 
     /**
