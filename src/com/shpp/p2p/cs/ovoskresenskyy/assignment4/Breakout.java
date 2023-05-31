@@ -23,7 +23,7 @@ public class Breakout extends SuperWindowProgram {
      */
     /* Dimensions of the paddle */
     public static final int PADDLE_WIDTH = 60;
-    public static final int PADDLE_HEIGHT = 20;
+    public static final int PADDLE_HEIGHT = 10;
     /* Color of the paddle */
     public static final Color PADDLE_COLOR = Color.BLACK;
     /* Offset of the paddle up from the bottom */
@@ -57,7 +57,7 @@ public class Breakout extends SuperWindowProgram {
      * Ball
      */
     /* Diameter of the ball in pixels */
-    public static final double BALL_SIZE = 20;
+    public static final double BALL_SIZE = 10;
     /* Radius of the ball in pixels */
     public static final double BALL_RADIUS = BALL_SIZE / 2.0;
     /* Color of the ball */
