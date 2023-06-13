@@ -121,3 +121,4 @@ fabric.properties
 target/
 /logs/binance-java-connector/
 /me.txt
+/en-dictionary.txt
