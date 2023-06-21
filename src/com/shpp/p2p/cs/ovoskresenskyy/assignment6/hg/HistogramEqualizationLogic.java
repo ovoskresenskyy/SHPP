@@ -75,8 +75,7 @@ public class HistogramEqualizationLogic {
             for (int col = 0; col < luminances[row].length; col++) {
 
                 int currentLuminance = luminances[row][col];
-                int fractionSmaller = cumulativeHistogram[currentLuminance] / totalPixels;
-                int newLuminance = MAX_LUMINANCE * fractionSmaller;
+                int newLuminance = MAX_LUMINANCE * cumulativeHistogram[currentLuminance] / totalPixels;
 
                 luminances[row][col] = newLuminance;
             }
