@@ -35,15 +35,15 @@ public class HistogramEqualizationLogic {
      * @return The cumulative frequency array.
      */
     public static int[] cumulativeSumFor(int[] histogram) {
-        int[] cumulativeFrequency = new int[HISTOGRAM_SIZE];
+        int[] cumulativeHistogram = new int[histogram.length];
         int sum = 0;
 
-        for (int i = 0; i < cumulativeFrequency.length; i++) {
+        for (int i = 0; i < histogram.length; i++) {
             sum += histogram[i];
-            cumulativeFrequency[i] = sum;
+            cumulativeHistogram[i] = sum;
         }
 
-        return cumulativeFrequency;
+        return cumulativeHistogram;
     }
 
     /**
@@ -73,8 +73,10 @@ public class HistogramEqualizationLogic {
 
         for (int row = 0; row < luminances.length; row++) {
             for (int col = 0; col < luminances[row].length; col++) {
+
                 int currentLuminance = luminances[row][col];
-                int newLuminance = MAX_LUMINANCE * cumulativeHistogram[currentLuminance] / totalPixels;
+                int fractionSmaller = cumulativeHistogram[currentLuminance] / totalPixels;
+                int newLuminance = MAX_LUMINANCE * fractionSmaller;
 
                 luminances[row][col] = newLuminance;
             }

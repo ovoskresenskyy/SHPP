@@ -23,8 +23,8 @@ public class SteganographyLogic {
         for (int row = 0; row < pixels.length; row++) {
             for (int column = 0; column < pixels[row].length; column++) {
 
-                boolean isHiddenBlackPixel = GImage.getRed(pixels[row][column]) % 2 != 0;
-                hiddenMessage[row][column] = isHiddenBlackPixel;
+                boolean isHiddenPixelBlack = GImage.getRed(pixels[row][column]) % 2 != 0;
+                hiddenMessage[row][column] = isHiddenPixelBlack;
 
             }
         }
@@ -58,10 +58,10 @@ public class SteganographyLogic {
             for (int column = 0; column < pixels[row].length; ++column) {
 
                 int red = GImage.getRed(pixels[row][column]);
-                boolean isHiddenBlackPixel = message[row][column];
+                boolean isHiddenPixelBlack = message[row][column];
 
                 pixels[row][column] = GImage.createRGBPixel(
-                        encryptRed(red, isHiddenBlackPixel),
+                        encryptRed(red, isHiddenPixelBlack),
                         GImage.getGreen(pixels[row][column]),
                         GImage.getBlue(pixels[row][column]));
             }
@@ -69,12 +69,22 @@ public class SteganographyLogic {
         return new GImage(pixels);
     }
 
-    private static int encryptRed(int red, boolean isHiddenBlackPixel) {
+    /**
+     * Encrypts hidden pixels by changing the color to red.
+     * <p>
+     * If the hidden pixel is black, then make the red value odd
+     * If the hidden pixel is white, then make the red value even
+     *
+     * @param red                - Incoming value of red color.
+     * @param isHiddenPixelBlack - True if pixel is black, false if white.
+     * @return Encrypted value of red color.
+     */
+    private static int encryptRed(int red, boolean isHiddenPixelBlack) {
         boolean redIsEven = red % 2 == 0;
 
-        if (isHiddenBlackPixel && redIsEven) {
+        if (isHiddenPixelBlack && redIsEven) {
             red = Math.max(1, --red);
-        } else if (!isHiddenBlackPixel && !redIsEven) {
+        } else if (!isHiddenPixelBlack && !redIsEven) {
             red = Math.max(0, --red);
         }
 
