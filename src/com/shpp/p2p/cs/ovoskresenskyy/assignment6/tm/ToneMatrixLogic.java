@@ -1,9 +1,9 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment6.tm;
 
-import java.util.Arrays;
-import java.util.DoubleSummaryStatistics;
-
 public class ToneMatrixLogic {
+
+    private final static double DEFAULT_INTENSITY = 1;
+
     /**
      * Given the contents of the tone matrix, returns a string of notes that should be played
      * to represent that matrix.
@@ -45,7 +45,7 @@ public class ToneMatrixLogic {
     private static double[] normalize(double[] result) {
         double maxIntensity = getMaxIntensity(result);
 
-        if (maxIntensity > 1) {
+        if (Math.abs(maxIntensity) > 1) {
             for (int i = 0; i < result.length; i++) {
                 result[i] /= maxIntensity;
             }
@@ -61,11 +61,11 @@ public class ToneMatrixLogic {
      * @return Maximum intensity value
      */
     private static double getMaxIntensity(double[] result) {
-        double maxIntensity = 1;
+        double maxIntensity = DEFAULT_INTENSITY;
 
         for (double tone : result) {
-            if (Math.abs(tone) > maxIntensity) {
-                maxIntensity = Math.abs(tone);
+            if (Math.abs(tone) > Math.abs(maxIntensity)) {
+                maxIntensity = tone;
             }
         }
 
