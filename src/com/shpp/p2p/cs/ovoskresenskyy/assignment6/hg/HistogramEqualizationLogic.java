@@ -1,5 +1,8 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment6.hg;
 
+/**
+ * The class describes the logic of image histogram alignment.
+ */
 public class HistogramEqualizationLogic {
     private static final int MAX_LUMINANCE = 255;
 
@@ -73,10 +76,8 @@ public class HistogramEqualizationLogic {
 
         for (int row = 0; row < luminances.length; row++) {
             for (int col = 0; col < luminances[row].length; col++) {
-
                 int currentLuminance = luminances[row][col];
                 int newLuminance = MAX_LUMINANCE * cumulativeHistogram[currentLuminance] / totalPixels;
-
                 luminances[row][col] = newLuminance;
             }
         }
