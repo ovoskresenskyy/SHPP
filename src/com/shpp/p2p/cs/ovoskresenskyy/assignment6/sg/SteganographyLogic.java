@@ -2,6 +2,9 @@ package com.shpp.p2p.cs.ovoskresenskyy.assignment6.sg;
 
 import acm.graphics.*;
 
+/**
+ * The class describes the logic for encrypting and decrypting an image.
+ */
 public class SteganographyLogic {
     /**
      * Given a GImage containing a hidden message, finds the hidden message
@@ -16,7 +19,6 @@ public class SteganographyLogic {
      * @return The hidden message, expressed as a boolean array.
      */
     public static boolean[][] findMessage(GImage source) {
-
         int[][] pixels = source.getPixelArray();
         boolean[][] hiddenMessage = new boolean[pixels.length][pixels[0].length];
 
@@ -83,9 +85,11 @@ public class SteganographyLogic {
         boolean redIsEven = red % 2 == 0;
 
         if (isHiddenPixelBlack && redIsEven) {
-            red = Math.max(1, --red);
+            //* Red component is between 0 and 254. */
+            red++;
         } else if (!isHiddenPixelBlack && !redIsEven) {
-            red = Math.max(0, --red);
+            //* Red component is between 1 and 255. */
+            red--;
         }
 
         return red;
