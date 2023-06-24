@@ -1,5 +1,9 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment6.tm;
 
+/**
+ * The class describes the logic for obtaining
+ * and normalizing the sound for the marked cells according to the samples.
+ */
 public class ToneMatrixLogic {
 
     private final static double DEFAULT_INTENSITY = 1;
@@ -26,7 +30,12 @@ public class ToneMatrixLogic {
         return normalize(result);
     }
 
-
+    /**
+     * The method fill result tone from the sample.
+     *
+     * @param result    - Array of tones to be played.
+     * @param sampleRow - Sample of the tones.
+     */
     private static void fillResult(double[] result, double[] sampleRow) {
         for (int i = 0; i < sampleRow.length; i++) {
             result[i] += sampleRow[i];
@@ -45,7 +54,7 @@ public class ToneMatrixLogic {
     private static double[] normalize(double[] result) {
         double maxIntensity = getMaxIntensity(result);
 
-        if (Math.abs(maxIntensity) > 1) {
+        if (Math.abs(maxIntensity) > DEFAULT_INTENSITY) {
             for (int i = 0; i < result.length; i++) {
                 result[i] /= maxIntensity;
             }
@@ -55,7 +64,7 @@ public class ToneMatrixLogic {
     }
 
     /**
-     * The method finds the absolute maximum intensity value
+     * The method finds the maximum intensity value
      *
      * @param result - Given array of tones
      * @return Maximum intensity value
@@ -64,9 +73,7 @@ public class ToneMatrixLogic {
         double maxIntensity = DEFAULT_INTENSITY;
 
         for (double tone : result) {
-            if (Math.abs(tone) > Math.abs(maxIntensity)) {
-                maxIntensity = tone;
-            }
+            maxIntensity = Math.abs(tone) > Math.abs(maxIntensity) ? tone : maxIntensity;
         }
 
         return maxIntensity;
