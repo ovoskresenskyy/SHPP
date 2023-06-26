@@ -310,7 +310,7 @@ public class NameSurferGraph extends GCanvas
      */
     public void deleteGraph(NameSurferEntry entry) {
         if (entry == null || !entries.contains(entry)) {
-            JOptionPane.showMessageDialog(new JFrame(), "No such graph!");
+            JOptionPane.showMessageDialog(new JFrame(), "No such graph! Nothing to delete!");
             return;
         }
 
