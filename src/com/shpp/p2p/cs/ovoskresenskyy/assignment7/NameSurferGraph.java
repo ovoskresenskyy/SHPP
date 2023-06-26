@@ -4,13 +4,12 @@ import acm.graphics.GCanvas;
 import acm.graphics.GLabel;
 import acm.graphics.GLine;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.List;
 
 /**
  * File: NameSurferGraph.java
@@ -25,10 +24,8 @@ public class NameSurferGraph extends GCanvas
 
     /**
      * The holder of the all added entries.
-     * Used set for not repeating the graphs.
-     * Used LinkedHashSet for get possibility iterate through the collection.
      */
-    private final Set<NameSurferEntry> entries = new LinkedHashSet<>();
+    private final List<NameSurferEntry> entries = new ArrayList<>();
 
     /**
      * The holder of the all lines for each entry according to the decades
@@ -65,8 +62,18 @@ public class NameSurferGraph extends GCanvas
      * Note that this method does not actually draw the graph, but
      * simply stores the entry; the graph is drawn by calling update.
      */
-    public void addEntry(NameSurferEntry entry) {
-        entries.add(entry);
+    public boolean addEntry(NameSurferEntry entry) {
+        if (entry == null) {
+            JOptionPane.showMessageDialog(new JFrame(), "No information found about entered name.");
+            return false;
+        }
+
+        if (entries.contains(entry)) {
+            JOptionPane.showMessageDialog(new JFrame(), "Entered name is already exist.");
+            return false;
+        }
+
+        return entries.add(entry);
     }
 
 
@@ -142,28 +149,28 @@ public class NameSurferGraph extends GCanvas
      * Graphs will get the different colors.
      */
     private void drawGraphs() {
-        int colorCounter = 0;
-
         for (NameSurferEntry entry : entries) {
-            Color graphColor = getGraphColor(colorCounter++);
-            drawGraph(entry, graphColor);
+            if (entry == null) {
+                continue;
+            }
+            drawGraph(entry);
         }
     }
 
     /**
      * This method is responsible for drawing the rank graph for
      * the received entry.
-     * The graph will be colored with the received color.
      * <p>
      * The method will go through all given decades and draw lines to complete
      * drawing the graph.
      * <p>
      * Each drawn line and label will be added into the collections.
      *
-     * @param entry - Received entry, which got by entering name.
-     * @param color - The color of the current graph
+     * @param entry - Received entry, which got from the entered name.
      */
-    private void drawGraph(NameSurferEntry entry, Color color) {
+    public void drawGraph(NameSurferEntry entry) {
+        Color color = getGraphColor(entries.indexOf(entry));
+
         /* Create a new or get the existing holder of lines */
         Map<Integer, GLine> rankLines = lines.getOrDefault(entry, new HashMap<>());
         /* Create a new or get the existing holder of labels */
@@ -296,6 +303,49 @@ public class NameSurferGraph extends GCanvas
         return GRAPH_COLORS[index % GRAPH_COLORS.length];
     }
 
+    /**
+     * This method is responsible for deleting the graph for received name
+     *
+     * @param entry - Entry to be processed
+     */
+    public void deleteGraph(NameSurferEntry entry) {
+        if (entry == null || !entries.contains(entry)) {
+            JOptionPane.showMessageDialog(new JFrame(), "No such graph!");
+            return;
+        }
+
+        removeEntryLines(entry);
+        removeEntryLabels(entry);
+
+        /* To not change the order of the colors, will set null instead of entry */
+        entries.set(entries.indexOf(entry), null);
+    }
+
+    /**
+     * This method is responsible for deleting the graph lines from the window
+     *
+     * @param entry - Entry to be processed
+     */
+    private void removeEntryLines(NameSurferEntry entry) {
+        Map<Integer, GLine> graphLines = lines.get(entry);
+        for (GLine line : graphLines.values()) {
+            remove(line);
+        }
+        lines.remove(entry);
+    }
+
+    /**
+     * This method is responsible for deleting the graph labels from the window
+     *
+     * @param entry - Entry to be processed
+     */
+    private void removeEntryLabels(NameSurferEntry entry) {
+        Map<Integer, GLabel> graphLabels = labels.get(entry);
+        for (GLabel label : graphLabels.values()) {
+            remove(label);
+        }
+        labels.remove(entry);
+    }
 
     /* Implementation of the ComponentListener interface */
     public void componentHidden(ComponentEvent e) {

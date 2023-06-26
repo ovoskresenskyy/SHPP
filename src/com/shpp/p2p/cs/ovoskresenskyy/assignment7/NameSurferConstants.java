@@ -38,10 +38,11 @@ public interface NameSurferConstants {
     /* The description of the 'name field' */
     String NAME_FIELD_ACTION_COMMAND = "NameFieldEnterPressed";
     /* The width of the 'name field' */
-    int NUM_COLUMNS = 30;
+    int NUM_COLUMNS = 20;
 
     /* The names of the action commands of the buttons */
     String GRAPH_BUTTON_PRESSED = "GraphButtonPressed";
+    String DELETE_BUTTON_PRESSED = "DeleteButtonPressed";
     String CLEAR_BUTTON_PRESSED = "ClearButtonPressed";
 
     String DECADE_LABEL_FONT = "Verdana-18";

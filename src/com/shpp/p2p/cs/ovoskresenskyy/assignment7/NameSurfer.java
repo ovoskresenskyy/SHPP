@@ -62,6 +62,7 @@ public class NameSurfer extends SimpleProgram implements NameSurferConstants {
      */
     private void addButtons() {
         addButton("Graph", GRAPH_BUTTON_PRESSED, NORTH);
+        addButton("Delete", DELETE_BUTTON_PRESSED, NORTH);
         addButton("Clear", CLEAR_BUTTON_PRESSED, NORTH);
     }
 
@@ -87,30 +88,23 @@ public class NameSurfer extends SimpleProgram implements NameSurferConstants {
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
 
-        if (cmd.equals(GRAPH_BUTTON_PRESSED)
-                || cmd.equals(NAME_FIELD_ACTION_COMMAND)) {
-
-            drawNamePopularity();
-
-            /* Clear the name field after drawing the graph. */
-            nameInputField.setText("");
-        } else if (cmd.equals(CLEAR_BUTTON_PRESSED)) {
-            graphField.clear();
-            graphField.update();
+        switch (cmd) {
+            case GRAPH_BUTTON_PRESSED, NAME_FIELD_ACTION_COMMAND -> {
+                NameSurferEntry entry = nameSurferDataBase.findEntry(nameInputField.getText().trim());
+                if (graphField.addEntry(entry)) {
+                    graphField.drawGraph(entry);
+                }
+            }
+            case DELETE_BUTTON_PRESSED -> {
+                NameSurferEntry entry = nameSurferDataBase.findEntry(nameInputField.getText().trim());
+                graphField.deleteGraph(entry);
+            }
+            case CLEAR_BUTTON_PRESSED -> {
+                graphField.clear();
+                graphField.update();
+            }
         }
-    }
 
-    /**
-     * This method is responsible for drawing the graph
-     * of the popularity of the entered name.
-     */
-    private void drawNamePopularity() {
-        NameSurferEntry entry = nameSurferDataBase.findEntry(nameInputField.getText().trim());
-        if (entry == null) {
-            System.out.println("No information found for the entered name.");
-        } else {
-            graphField.addEntry(entry);
-            graphField.update();
-        }
+        nameInputField.setText("");
     }
 }
