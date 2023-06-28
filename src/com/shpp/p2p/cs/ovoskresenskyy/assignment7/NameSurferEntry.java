@@ -1,5 +1,6 @@
 package com.shpp.p2p.cs.ovoskresenskyy.assignment7;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class NameSurferEntry implements NameSurferConstants {
 
-    private final String name;
+    private String name;
 
     /**
      * Holder of popularity ratings according to the decades.
@@ -28,8 +29,23 @@ public class NameSurferEntry implements NameSurferConstants {
      */
     public NameSurferEntry(String line) {
         String[] values = line.split(" ");
-        this.name = values[0];
+        setName(values);
         setPopularity(values);
+    }
+
+    /**
+     * This method is responsible for setting the name,
+     * by getting the first value from the received array
+     *
+     * @param values - the row from the file with the name and the ranks, separated by space.
+     */
+    private void setName(String[] values) {
+        if (values.length == 0) {
+            System.out.println("Something went wrong! Can't set the name!");
+            this.name = "";
+        } else {
+            this.name = values[0];
+        }
     }
 
     /**
@@ -37,11 +53,21 @@ public class NameSurferEntry implements NameSurferConstants {
      *
      * @param values - the row from the file with the name and the ranks, separated by space.
      */
-    public void setPopularity(String[] values) {
+    private void setPopularity(String[] values) {
         String[] ranks = Arrays.copyOfRange(values, START_POS_POPULARITY_RANKS, values.length);
+        int rank;
 
         for (int i = 0; i < NDECADES; i++) {
-            int rank = Integer.parseInt(ranks[i]);
+            try {
+                rank = Integer.parseInt(ranks[i]);
+            } catch (NumberFormatException e) {
+                System.out.println("Something went wrong!"
+                        + "\nCan't set rank for "
+                        + name
+                        + " for decade # "
+                        + i);
+                rank = 0;
+            }
             popularityRank.add(rank);
         }
     }

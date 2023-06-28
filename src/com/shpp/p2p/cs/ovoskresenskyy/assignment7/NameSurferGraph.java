@@ -94,14 +94,14 @@ public class NameSurferGraph extends GCanvas
      * This method is responsible for drawing the background grid on the window.
      */
     private void drawGrid() {
-        drawDecades();
-        drawHorizontalDividers();
+        drawVerticalColumns();
+        drawHorizontalLines();
     }
 
     /**
-     * This method is draws horizontal lines and names for each decade
+     * This method is draws vertical lines and names for each decade
      */
-    private void drawDecades() {
+    private void drawVerticalColumns() {
         /* Offset between the lines according to the current size of the window */
         double xOffset = getWidth() / (double) NDECADES;
 
@@ -126,7 +126,7 @@ public class NameSurferGraph extends GCanvas
      * This method is draws two horizontal lines
      * to divide the graph field from other labels and interactors.
      */
-    private void drawHorizontalDividers() {
+    private void drawHorizontalLines() {
         /* Top line */
         drawLine(0,
                 GRAPH_MARGIN_SIZE,
@@ -246,18 +246,24 @@ public class NameSurferGraph extends GCanvas
         if (rank == 0) {
             return 0;
         }
-        return 100 - rank / (double) MAX_RANK * 100;
+        return 1 - rank / (double) MAX_RANK;
     }
 
     /**
      * This method simply returns the name and the rank of the current decade
+     *
+     * If rank is 0, print '*' instead of rank
      *
      * @param entry  - Entry to be processed
      * @param decade - Current index of the decade
      * @return the name with the rank to be placed on the label
      */
     private String getRankLabelName(NameSurferEntry entry, int decade) {
-        return entry.getName() + " " + entry.getRank(decade);
+        int rank = entry.getRank(decade);
+
+        return entry.getName()
+                + " "
+                + (rank == 0 ? "*" : rank);
     }
 
     /**

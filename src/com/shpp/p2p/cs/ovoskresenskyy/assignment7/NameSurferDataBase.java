@@ -40,9 +40,7 @@ public class NameSurferDataBase implements NameSurferConstants {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             parseFile(br);
         } catch (IOException e) {
-            System.out.println("Can't read the file.");
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can't read the file.", e);
         }
     }
 
