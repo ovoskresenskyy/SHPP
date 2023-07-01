@@ -94,14 +94,14 @@ public class NameSurferGraph extends GCanvas
      * This method is responsible for drawing the background grid on the window.
      */
     private void drawGrid() {
-        drawVerticalColumns();
+        drawBackgroundColumns();
         drawHorizontalLines();
     }
 
     /**
      * This method is draws vertical lines and names for each decade
      */
-    private void drawVerticalColumns() {
+    private void drawBackgroundColumns() {
         /* Offset between the lines according to the current size of the window */
         double xOffset = getWidth() / (double) NDECADES;
 
@@ -230,7 +230,7 @@ public class NameSurferGraph extends GCanvas
     private double getYCoordinate(int rank) {
         double graphHeight = getHeight() - GRAPH_MARGIN_SIZE * 2;
         double coefficient = getRankCoefficient(rank);
-        return graphHeight - graphHeight * coefficient / 100 + GRAPH_MARGIN_SIZE;
+        return graphHeight - graphHeight * coefficient + GRAPH_MARGIN_SIZE;
     }
 
     /**
