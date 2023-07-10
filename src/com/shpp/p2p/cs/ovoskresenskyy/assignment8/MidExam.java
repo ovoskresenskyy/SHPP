@@ -58,12 +58,10 @@ public class MidExam extends WindowProgram {
      * and collect them into the holder.
      */
     private void drawBaseline() {
-        double baseLineWidth = SQUARE_NUMBER * SQUARE_SIZE;
-        double startX = (getWidth() - baseLineWidth) / 2;
+        double startX = (getWidth() - SQUARE_NUMBER * SQUARE_SIZE) / 2;
 
         for (int i = 0; i < SQUARE_NUMBER; i++) {
-            double xOffset = SQUARE_SIZE * i;
-            double x = startX + xOffset;
+            double x = startX + SQUARE_SIZE * i;
 
             GRect square = getDefaultSquare(x, 0);
             add(square);
