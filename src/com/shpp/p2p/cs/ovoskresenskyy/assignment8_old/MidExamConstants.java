@@ -1,4 +1,4 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment8;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment8_old;
 
 import java.awt.*;
 

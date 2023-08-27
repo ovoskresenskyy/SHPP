@@ -1,6 +1,6 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.executor;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.executor;
 
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.OperandPair;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.OperandPair;
 
 /**
  * This class is a contract to all classes which can calculate

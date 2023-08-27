@@ -1,20 +1,21 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.service;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.service;
 
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.ParsingError;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.Expression;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.OperandPair;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.Operator;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.Operator;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.ParsingError;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.Expression;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.OperandPair;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Stack;
 import java.util.TreeMap;
 
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.Operator.*;
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.ParsingError.NO_ERROR;
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.ParsingError.showErrorMessage;
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.service.ExpressionCleaner.prepareExpression;
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.service.ExpressionValidator.isArgsEmpty;
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.service.ExpressionValidator.isTextExpressionValid;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.Operator.*;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.ParsingError.NO_ERROR;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.ParsingError.showErrorMessage;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.service.ExpressionCleaner.prepareExpression;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.service.ExpressionValidator.isArgsEmpty;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.service.ExpressionValidator.isTextExpressionValid;
 
 /**
  * This class is responsible for parsing received arguments.
@@ -92,4 +93,18 @@ public class ExpressionParser {
 
         return operands;
     }
+
+//    private static HashMap<Integer, OperandPair> extractTokens(String expression) {
+//
+//        Stack<Integer> tokenStartIndexes = new Stack<>();
+//        Stack<String> braces = new Stack<>();
+//
+//        for (int i = 0; i < expression.length(); i++) {
+//            if (expression.charAt(i) == '(') {
+//                tokenStartIndexes.push(i);
+//            }
+//        }
+//
+//        return null;
+//    }
 }

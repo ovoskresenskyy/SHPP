@@ -1,14 +1,12 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.service;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.service;
 
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.executor.*;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.Expression;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.OperandPair;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.Operator;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.Operator;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.executor.*;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.Expression;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.OperandPair;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.service.ExpressionService.updateOperandRelations;
 
 /**
  * This class is responsible for calculating received expressions
@@ -78,7 +76,7 @@ public class Calculator {
             result = executor.calculate(operandPair);
 
             /* Updating all relative pairs with the result of the current calculation. */
-            updateOperandRelations(operands, position, result);
+            ExpressionService.updateOperandRelations(operands, position, result);
 
             /* Marking current pair as calculating. */
             operandPair.setCalculated(true);

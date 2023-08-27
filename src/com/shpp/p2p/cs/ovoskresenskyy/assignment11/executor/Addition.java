@@ -1,6 +1,6 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.executor;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.executor;
 
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.OperandPair;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.OperandPair;
 
 /**
  * This class is responsible for adding left value of received pair with the right.

@@ -1,18 +1,15 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.service;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.service;
 
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.ParsingError;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.Expression;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.OperandPair;
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.Operator;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.Operator;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.ParsingError;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.Expression;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.OperandPair;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Pattern;
 
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.Operator.getOperatorsAsDelimiter;
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.ParsingError.*;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.Operator.*;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.ParsingError.*;
 
 /**
  * This class is responsible for checking the expression and validate is
@@ -23,7 +20,7 @@ public class ExpressionValidator {
     /**
      * The regex of all symbols that can used in the expression
      */
-    private static final String VALID_EXPRESSION_SYMBOLS = "[a-zA-Z\\d.]+";
+    private static final String VALID_EXPRESSION_SYMBOLS = "[a-zA-Z()\\d.]+";
     /**
      * The regex of symbols that can used as a variables
      */
@@ -47,6 +44,9 @@ public class ExpressionValidator {
      * @return True if expression is marked as valid, false if not
      */
     public static boolean isTextExpressionValid(String expression) {
+        ParsingError numberOfBracketsCorrect = isNumberOfBracketsCorrect(expression);
+        showErrorMessage(numberOfBracketsCorrect);
+
         String[] operands = expression.split(getOperatorsAsDelimiter());
 
         ParsingError operandsValid = isOperandsValid(operands);
@@ -58,7 +58,8 @@ public class ExpressionValidator {
         ParsingError emptyOperandsPresent = isEmptyOperandsPresent(operands);
         showErrorMessage(emptyOperandsPresent);
 
-        return operandsValid == NO_ERROR
+        return numberOfBracketsCorrect == NO_ERROR
+                && operandsValid == NO_ERROR
                 && variablesPresent == NO_ERROR
                 && emptyOperandsPresent == NO_ERROR;
     }
@@ -100,6 +101,26 @@ public class ExpressionValidator {
      */
     private static ParsingError isEmptyOperandsPresent(String[] operands) {
         return Arrays.asList(operands).contains("") ? EMPTY_OPERANDS_PRESENT : NO_ERROR;
+    }
+
+    //TODO comments
+    private static ParsingError isNumberOfBracketsCorrect(String expression) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : expression.toCharArray()) {
+            Operator operator = getOperatorBySymbol(c);
+            if (!isBracket(operator)) {
+                continue;
+            }
+
+            if (operator == OPEN_BRACKET) {
+                stack.push(c);
+            } else if (operator == CLOSE_BRACKET && stack.isEmpty()) {
+                return NUMBER_OF_BRACKETS_INCORRECT;
+            } else {
+                stack.pop();
+            }
+        }
+        return stack.isEmpty() ? NO_ERROR : NUMBER_OF_BRACKETS_INCORRECT;
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums;
 
 /**
  * This class is hold all known errors
@@ -9,6 +9,7 @@ public enum ParsingError {
     /**
      * Text expression errors
      */
+    NUMBER_OF_BRACKETS_INCORRECT("The number of brackets is incorrect!"),
     OPERANDS_NOT_VALID("Expression contains forbidden symbols!"),
     VARIABLE_PRESENT("Expression contains don't matched variables!"),
     EMPTY_OPERANDS_PRESENT("Number of operators doesn't match with the given operands!"),

@@ -1,6 +1,6 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.service;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.service;
 
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums.Operator.*;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums.Operator.*;
 
 /**
  * This class is responsible for the cleaning and fixing the text value
@@ -64,6 +64,11 @@ public class ExpressionCleaner {
 
         for (int i = 1; i < args.length; i++) {
             String[] valueVariable = cleanExpression(args[i]).split(VARIABLE_DELIMITER);
+
+            if (valueVariable.length < 2) {
+                continue;
+            }
+
             String variable = valueVariable[0].toLowerCase();
             String value = valueVariable[1];
 

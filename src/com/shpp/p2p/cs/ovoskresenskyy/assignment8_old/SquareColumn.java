@@ -1,10 +1,10 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment8;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment8_old;
 
 import acm.graphics.GRect;
 
 import java.awt.*;
 
-import static com.shpp.p2p.cs.ovoskresenskyy.assignment8.MidExamConstants.*;
+import static com.shpp.p2p.cs.ovoskresenskyy.assignment8_old.MidExamConstants.*;
 
 /**
  * This class is a simple implementation of the LinkedList

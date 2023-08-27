@@ -1,6 +1,6 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.service;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.service;
 
-import com.shpp.p2p.cs.ovoskresenskyy.assignment10.model.OperandPair;
+import com.shpp.p2p.cs.ovoskresenskyy.assignment11.model.OperandPair;
 
 import java.util.HashMap;
 

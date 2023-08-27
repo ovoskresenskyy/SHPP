@@ -1,10 +1,13 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.model;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.model;
 
 /**
  * This class is representing of the pair of the operands
  * placed on the side of the operator.
  */
 public class OperandPair {
+
+    private Token leftValue;
+    private Token rightValue;
 
     /**
      * Value on the left side of the operator

@@ -1,4 +1,4 @@
-package com.shpp.p2p.cs.ovoskresenskyy.assignment10.enums;
+package com.shpp.p2p.cs.ovoskresenskyy.assignment11.enums;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -14,7 +14,10 @@ public enum Operator {
     MULTIPLICATION('*', 2),
     DIVISION('/', 3),
     SUBTRACTION('-', 4),
-    ADDITION('+', 5);
+    ADDITION('+', 5),
+
+    OPEN_BRACKET('(', 0),
+    CLOSE_BRACKET(')', 0);
 
     /**
      * Text representing of the operator
@@ -60,6 +63,12 @@ public enum Operator {
         return BY_SYMBOL.containsKey(symbol);
     }
 
+    //TODO
+    public static boolean isBracket(Operator operator) {
+        return operator == OPEN_BRACKET
+                || operator == CLOSE_BRACKET;
+    }
+
     /**
      * This method is responsible for finding the operator by the given character.
      *
@@ -78,6 +87,7 @@ public enum Operator {
      */
     public static String getOperatorsAsDelimiter() {
         return BY_SYMBOL.values().stream()
+                .filter(operator -> operator != OPEN_BRACKET && operator != CLOSE_BRACKET)
                 .map(operator -> operator.symbol)
                 .map(Object::toString)
                 .collect(Collectors.joining("\\", "[", "]"));
